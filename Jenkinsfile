@@ -18,7 +18,7 @@ stage 'foo test'
 
 node {
     echo 'start test'
-    sh 'mvn -B clean verify'
+    sh 'mvn -B verify'
 }
 
 
