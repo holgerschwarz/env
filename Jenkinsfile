@@ -22,7 +22,7 @@ node {
 }
 
 
-stage 'wartem auf deployfreigabe'
+stage 'warten auf deployfreigabe'
 node {
     timeout(time: 20, unit: 'SECONDS') {
         input 'deployen?'
