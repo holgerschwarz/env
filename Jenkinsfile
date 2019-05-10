@@ -2,54 +2,56 @@
 pipeline {
     agent any
 
-    stage 'start heollworld2docker'
-    node {
-       sh ./de/holger/template/helloworldDocker.yml
-    }
-
-
-
-    stage 'warten auf checkout'
-    node {
-        timeout(time: 20, unit: 'SECONDS') {
-            input 'checkout?'
+    stages {
+        stage 'start heollworld2docker'
+        node {
+           sh ./de/holger/template/helloworldDocker.yml
         }
-    }
-
-    stage 'foo checkout'
-
-    node {
-        echo 'start checkout'
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/holgerschwarz/helloRest.git']]])
-    }
-
-    stage 'foo build'
-
-    node {
-        echo 'start build'
-        sh 'mvn -B -DskipTests clean package'
-    }
 
 
-    stage 'foo test'
 
-    node {
-        echo 'start test'
-        sh 'mvn -B verify'
-    }
-
-
-    stage 'warten auf deployfreigabe'
-    node {
-        timeout(time: 20, unit: 'SECONDS') {
-            input 'deployen?'
+        stage 'warten auf checkout'
+        node {
+            timeout(time: 20, unit: 'SECONDS') {
+                input 'checkout?'
+            }
         }
-    }
+
+        stage 'foo checkout'
+
+        node {
+            echo 'start checkout'
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/holgerschwarz/helloRest.git']]])
+        }
+
+        stage 'foo build'
+
+        node {
+            echo 'start build'
+            sh 'mvn -B -DskipTests clean package'
+        }
 
 
-    stage 'foo deploy'
+        stage 'foo test'
 
-    node {
-        echo 'start deploy'
+        node {
+            echo 'start test'
+            sh 'mvn -B verify'
+        }
+
+
+        stage 'warten auf deployfreigabe'
+        node {
+            timeout(time: 20, unit: 'SECONDS') {
+                input 'deployen?'
+            }
+        }
+
+
+        stage 'foo deploy'
+
+        node {
+            echo 'start deploy'
+        }
     }
 }
