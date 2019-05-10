@@ -1,6 +1,18 @@
 
 pipeline {
     agent any
+    stages {
+        stage('Example') {
+            steps {
+                echo "Running "
+            }
+        }
+    }
+}
+
+/*
+pipeline {
+    agent any
 
     stages {
         stage 'start heollworld2docker'
@@ -55,3 +67,4 @@ pipeline {
         }
     }
 }
+*/
