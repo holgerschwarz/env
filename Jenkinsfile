@@ -8,7 +8,7 @@ pipeline {
             }
         }
 
-        stage('Example') {
+        stage('copy') {
             steps {
                 echo "start  helloworldDocker.yml"
                 sh ./de/holger/template/helloworldDocker.yml
