@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "start  helloworldDocker.yml"
                 sh 'echo "Hello World"'
-                #sh ./de/holger/template/helloworldDocker.yml
+                sh './de/holger/template/helloworldDocker.yml'
             }
         }
 
