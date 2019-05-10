@@ -8,6 +8,13 @@ pipeline {
             }
         }
 
+        stage('Example') {
+            steps {
+                echo "start  helloworldDocker.yml"
+                sh ./de/holger/template/helloworldDocker.yml
+            }
+        }
+
         stage ('foo checkout') {
             steps {
                 echo 'start checkout'
