@@ -1,5 +1,11 @@
 
-stage 'env checkout'
+stage 'start heollworld2docker'
+node {
+   sh ./de/holger/template/helloworldDocker.yml
+}
+
+
+
 
 stage 'warten auf checkout'
 node {
