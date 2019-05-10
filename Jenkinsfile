@@ -1,9 +1,11 @@
 
 stage 'env checkout'
 
+stage 'warten auf checkout'
 node {
-    echo 'start checkout'
-    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/holgerschwarz/env.git']]])
+    timeout(time: 20, unit: 'SECONDS') {
+        input 'checkout?'
+    }
 }
 
 stage 'foo checkout'
